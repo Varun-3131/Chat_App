@@ -3,7 +3,7 @@ import authRoutes from "./routes/auth.route.js";
 import dotenv from "dotenv";
 import {connectDb} from "./lib/db.js";
 import cookieParser from "cookie-parser";
-
+import messageRoutes from "./routes/message.route.js";
 dotenv.config();
 
 
@@ -22,5 +22,7 @@ app.listen(PORT, () => {
 
 
 app.use("/api/auth",authRoutes)
+
+app.use("/api/message",messageRoutes)
 
 
