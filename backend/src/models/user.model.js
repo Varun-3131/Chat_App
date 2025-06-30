@@ -18,7 +18,7 @@ const  userSchema = new mongoose.Schema(
     },
     profilePic:{
         type: String,
-        default: "https://avatars1.githubusercontent.com/u/64?v=4",
+        default: "",
     },
 
 },
