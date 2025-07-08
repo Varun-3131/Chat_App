@@ -8,7 +8,7 @@ const BASE_URL = "http://localhost:5001";
 export const useAuthStore = create((set, get) => ({
     authUser: null,
     isSigningUp: false,
-    isLoggingIng: false,
+    isLoggingIn: false,
     isUpdatingProfile: false,
     isCheckingAuth: true,
     onlineUsers: [],
@@ -95,14 +95,18 @@ export const useAuthStore = create((set, get) => ({
             return;
         }
 
-        const socket = io(BASE_URL,{
-            query:{
-                userId: authUser.id,
+        const socket = io(BASE_URL, {
+            query: {
+                userId: authUser._id,
             }
         });
         socket.connect()
 
-        set({socket:socket})
+        set({socket: socket})
+
+        socket.on("getOnlineUsers", (usersIds) => {
+            set({onlineUsers: usersIds});
+        })
 
     },
 
